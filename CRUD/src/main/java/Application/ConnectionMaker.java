@@ -1,15 +1,14 @@
-package CRUDApp;
+package Application;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Test1
+public class ConnectionMaker
 {
 
 	public static void main(String[] args)
 	{
-		// TODO Auto-generated method stub
 		String jdbcURL = "jdbc:mysql://localhost:3306/SampleDB";
 		String userName = "root";
 		String password = "P@ssw0rd@123";
