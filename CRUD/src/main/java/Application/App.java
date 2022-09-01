@@ -15,8 +15,9 @@ public class App extends menu
 		while(true)
 		{
 			printMenu();
-			tempInput = sc.nextLine();
-			if(tempInput.matches("[0-9]*") && Integer.parseInt(tempInput) < 6 && Integer.parseInt(tempInput) > 0)
+			tempInput = sc.next();
+
+			if(tempInput.matches("[0-9]+") && Integer.parseInt(tempInput) < 6 && Integer.parseInt(tempInput) > 0)
 			{
 				input = Integer.parseInt(tempInput);
 				if(input == 1)
@@ -58,6 +59,7 @@ public class App extends menu
 					if(ans)
 					{
 						System.out.println("Successfully Deleted");
+						System.out.println();
 					}
 					else
 					{
@@ -68,10 +70,6 @@ public class App extends menu
 				else if(input == 5)
 				{
 					break;
-				}
-				else
-				{
-					System.out.println("Wrong Options\n Choose Correct");
 				}
 
 			}

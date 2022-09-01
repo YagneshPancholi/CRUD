@@ -2,7 +2,7 @@ package Application;
 
 import java.util.Scanner;
 
-public class menu
+public class menu extends Validation
 {
 
 	public static void printMenu()
@@ -21,12 +21,36 @@ public class menu
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Name :  ");
 		String name = sc.nextLine();
+		while(!validateName(name))
+		{
+			System.out.println("Enter Name :  ");
+			name = sc.nextLine();
+		}
+
 		System.out.println("Enter Password : ");
 		String password = sc.nextLine();
+		//while(!validate)
 		System.out.println("Enter Email :  ");
 		String email = sc.nextLine();
+		while(!validateEmail(email))
+		{
+			System.out.println("Enter Email :  ");
+			email = sc.nextLine();
+		}
+
+		System.out.println("Avaliable Department Ids : From 1 to 10 ");
+		String temp = null;
+		int deptid = 0;
 		System.out.println("Enter Department Id");
-		int deptid = sc.nextInt();
+		temp = sc.nextLine();
+
+		while(!validateDeptId(temp))
+		{
+			System.out.println("Enter Department Id");
+			temp = sc.nextLine();
+		}
+		deptid = Integer.parseInt(temp);
+
 		Student st = new Student(name, password, email, deptid);
 		return st;
 	}
@@ -35,11 +59,23 @@ public class menu
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Student ID To which You want to  Update\n");
-		int id = sc.nextInt();
+		String temp = sc.next();
+		while(!validateStudentId(temp))
+		{
+			temp = sc.next();
+		}
+		int id = Integer.parseInt(temp);
+
 		System.out.println("Enter New Password : ");
 		String password = sc.next();
+
 		System.out.println("Enter New Email :  ");
 		String email = sc.next();
+		while(!validateEmail(email))
+		{
+			System.out.println("Enter Email :  ");
+			email = sc.nextLine();
+		}
 		System.out.println("Enter New Department Id");
 		int deptid = sc.nextInt();
 		Student st = new Student(id, password, email, deptid);

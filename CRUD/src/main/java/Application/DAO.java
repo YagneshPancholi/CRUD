@@ -5,8 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class DAO
+public class DAO extends CONST
 {
+
 	public static boolean insertToDb(Student st)
 	{
 		boolean f = false;
@@ -14,9 +15,8 @@ public class DAO
 		try
 		{
 			Connection con = ConnectionMaker.createConnection();
-			String q1 = "insert into student(name,password,email,departmentid) values(?,?,?,?)";
 			//prepared stmt
-			PreparedStatement pstmt = con.prepareStatement(q1);
+			PreparedStatement pstmt = con.prepareStatement(INSERTQUERY);
 			pstmt.setString(1, st.getName());
 			pstmt.setString(2, st.getPassword());
 			pstmt.setString(3, st.getEmail());
@@ -37,11 +37,10 @@ public class DAO
 		try
 		{
 			Connection con = ConnectionMaker.createConnection();
-			String q1 = "delete from student where id =?";
-			//prepared stmt
-			PreparedStatement pstmt = con.prepareStatement(q1);
-			pstmt.setInt(1, id);
 
+			//prepared stmt
+			PreparedStatement pstmt = con.prepareStatement(DELETEQUERY);
+			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
 			f = true;
 		}
@@ -55,14 +54,13 @@ public class DAO
 	}
 
 	public static void showStudentDetails()
+
 	{
-		boolean f = false;
 		try
 		{
 			Connection con = ConnectionMaker.createConnection();
-			String q1 = "select id,name,email,departmentid from student;";
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(q1);
+			ResultSet rs = stmt.executeQuery(SELECTQUERY);
 
 			System.out.print("ID\t");
 			System.out.print("Name\t");
@@ -92,9 +90,8 @@ public class DAO
 		try
 		{
 			Connection con = ConnectionMaker.createConnection();
-			String q1 = "update student set password=?,email=?,departmentid=? where id=?";
 			//prepared stmt
-			PreparedStatement pstmt = con.prepareStatement(q1);
+			PreparedStatement pstmt = con.prepareStatement(UPDATEQUERY);
 			pstmt.setString(1, st.getPassword());
 			pstmt.setString(2, st.getEmail());
 			pstmt.setInt(3, st.getDeptid());

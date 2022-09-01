@@ -9,19 +9,29 @@ public class ConnectionMaker
 
 	public static Connection createConnection()
 	{
-		try
+		if(conn == null)
 		{
-			String jdbcURL = "jdbc:mysql://localhost:3306/SampleDB";
-			String userName = "root";
-			String password = "P@ssw0rd@123";
-			conn = DriverManager.getConnection(jdbcURL, userName, password);
+			try
+			{
+				String jdbcURL = "jdbc:mysql://localhost:3306/SampleDB";
+				String userName = "root";
+				String password = "P@ssw0rd@123";
+				conn = DriverManager.getConnection(jdbcURL, userName, password);
+
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			return conn;
 
 		}
-		catch(Exception e)
+		else
 		{
-			e.printStackTrace();
+			return conn;
+
 		}
-		return conn;
+
 	}
 
 }
