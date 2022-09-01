@@ -1,13 +1,12 @@
 package Application;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Validation extends DAO
+public class Validation
 {
+
 	public static boolean validateName(String name)
 	{
 		boolean ans = false;
@@ -62,15 +61,28 @@ public class Validation extends DAO
 		return ans;
 	}
 
-	public static boolean validateStudentId(String temp)
+	public static boolean validatePassword(String temp)
 	{
 		boolean ans = false;
+		if(temp != null && temp.length() > 4)
+		{
+			ans = true;
+		}
+		else
+		{
+			System.out.println("Password should be atleast 5 character long");
+		}
+		return ans;
+	}
+
+	public static boolean validateStudentId(String temp) throws SQLException
+	{
+		boolean ans = false;
+
 		Scanner sc = new Scanner(System.in);
-		Connection con = ConnectionMaker.createConnection();
 		try
 		{
-			PreparedStatement pstmt = con.prepareStatement(SELECTQUERY);
-			ResultSet rs = pstmt.executeQuery();
+			ResultSet rs = CONST.selectPstmt.executeQuery();
 			while(rs.next())
 			{
 				int avaid = Integer.parseInt(rs.getString("id"));
@@ -81,24 +93,27 @@ public class Validation extends DAO
 					{
 						ans = true;
 					}
-					else
-					{
-						System.out.println("Enter Correct Id");
-
-					}
+					//					else
+					//					{
+					//						System.out.println("Enter Correct Id");
+					//
+					//					}
 
 				}
 				else
 				{
-					//ans = true;
-					//break;
-					System.out.println("Enter Correct Id");
-
+					//System.out.println("Enter Correct Id");
+					break;
 				}
 				if(ans)
 				{
 					break;
 				}
+			}
+			if(!ans)
+			{
+				System.out.println("ID not avaliable");
+				System.out.println("Enter Correct Id");
 			}
 		}
 
@@ -106,8 +121,6 @@ public class Validation extends DAO
 		{
 			e.printStackTrace();
 		}
-
 		return ans;
-
 	}
 }

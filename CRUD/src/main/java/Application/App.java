@@ -1,12 +1,16 @@
 package Application;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class App extends menu
 {
+	static Connection conn = ConnectionMaker.createConnection();
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws SQLException
 	{
+		new CONST(conn);
 		System.out.println("--------------------------------------------");
 		System.out.println("\twelcome To Student Management");
 		Scanner sc = new Scanner(System.in);
@@ -23,48 +27,33 @@ public class App extends menu
 				if(input == 1)
 				{
 					Student st = method1();
-					boolean ans = DAO.insertToDb(st);
-					if(ans)
-					{
-						System.out.println("Successfully added");
-					}
-					else
-					{
-						System.out.println("Something went wrong");
-					}
+					//DAO.insertToDb(st);
+					CONST.insertMethod(st);
+
 				}
 				else if(input == 2)
 				{
 
 					Student st = method2();
-					boolean ans1 = DAO.updateStudent(st);
-					if(ans1)
-					{
-						System.out.println("Successfully Updated");
-					}
-					else
-					{
-						System.out.println("Something went wrong");
-					}
+					//					 DAO.updateStudent(st);
+					CONST.updateMethod(st);
+
 				}
 				else if(input == 3)
 				{
-					DAO.showStudentDetails();
+					//DAO.showStudentDetails();
+					CONST.selectMethod();
 				}
 				else if(input == 4)
 				{
 					System.out.println("Enter student id to delete : ");
-					int id = sc.nextInt();
-					boolean ans = DAO.deleteStudent(id);
-					if(ans)
+					String temp = sc.next();
+					while(!validateStudentId(temp))
 					{
-						System.out.println("Successfully Deleted");
-						System.out.println();
+						temp = sc.next();
 					}
-					else
-					{
-						System.out.println("Something went wrong");
-					}
+					int id = Integer.parseInt(temp);
+					CONST.deleteMethod(id);
 
 				}
 				else if(input == 5)

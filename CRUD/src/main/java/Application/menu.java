@@ -1,5 +1,6 @@
 package Application;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class menu extends Validation
@@ -29,7 +30,11 @@ public class menu extends Validation
 
 		System.out.println("Enter Password : ");
 		String password = sc.nextLine();
-		//while(!validate)
+		while(!validatePassword(password))
+		{
+			System.out.println("Enter Password :  ");
+			password = sc.nextLine();
+		}
 		System.out.println("Enter Email :  ");
 		String email = sc.nextLine();
 		while(!validateEmail(email))
@@ -52,10 +57,11 @@ public class menu extends Validation
 		deptid = Integer.parseInt(temp);
 
 		Student st = new Student(name, password, email, deptid);
+		//sc.close();
 		return st;
 	}
 
-	public static Student method2()
+	public static Student method2() throws SQLException
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Student ID To which You want to  Update\n");
