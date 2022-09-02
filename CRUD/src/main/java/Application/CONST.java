@@ -79,7 +79,18 @@ public class CONST
 
 	public static void updateMethod(Student st)
 	{
-
+		try
+		{
+			updatePstmt.setString(1, st.getPassword());
+			updatePstmt.setString(2, st.getEmail());
+			updatePstmt.setInt(3, st.getDeptid());
+			updatePstmt.setInt(4, st.getId());
+			updatePstmt.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
 	}
 
 }

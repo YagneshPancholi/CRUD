@@ -27,7 +27,6 @@ public class App extends menu
 				if(input == 1)
 				{
 					Student st = method1();
-					//DAO.insertToDb(st);
 					CONST.insertMethod(st);
 
 				}
@@ -35,13 +34,11 @@ public class App extends menu
 				{
 
 					Student st = method2();
-					//					 DAO.updateStudent(st);
 					CONST.updateMethod(st);
 
 				}
 				else if(input == 3)
 				{
-					//DAO.showStudentDetails();
 					CONST.selectMethod();
 				}
 				else if(input == 4)

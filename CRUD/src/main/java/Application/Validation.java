@@ -17,7 +17,7 @@ public class Validation
 		else
 		{
 			System.out.println("Wrong Name Format");
-
+			System.out.println("Enter Name Again : ");
 		}
 		return ans;
 	}
@@ -32,6 +32,7 @@ public class Validation
 		else
 		{
 			System.out.println("Wrong Email Format");
+			System.out.println("Enter Email Again :  ");
 
 		}
 		return ans;
@@ -51,12 +52,14 @@ public class Validation
 			else
 			{
 				System.out.println("please Choose From Given Range");
+				System.out.println("Enter DeptId Again : ");
 			}
 		}
 
 		else
 		{
 			System.out.println("Wrong Department id");
+			System.out.println("Enter DeptId Again : ");
 		}
 		return ans;
 	}
@@ -71,6 +74,7 @@ public class Validation
 		else
 		{
 			System.out.println("Password should be atleast 5 character long");
+			System.out.println("Enter Password Again:");
 		}
 		return ans;
 	}
@@ -93,16 +97,10 @@ public class Validation
 					{
 						ans = true;
 					}
-					//					else
-					//					{
-					//						System.out.println("Enter Correct Id");
-					//
-					//					}
 
 				}
 				else
 				{
-					//System.out.println("Enter Correct Id");
 					break;
 				}
 				if(ans)
@@ -113,7 +111,7 @@ public class Validation
 			if(!ans)
 			{
 				System.out.println("ID not avaliable");
-				System.out.println("Enter Correct Id");
+				System.out.println("Enter Correct Id : ");
 			}
 		}
 

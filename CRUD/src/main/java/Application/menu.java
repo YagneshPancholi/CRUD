@@ -21,38 +21,34 @@ public class menu extends Validation
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Name :  ");
-		String name = sc.nextLine();
+		String name = sc.next();
 		while(!validateName(name))
 		{
-			System.out.println("Enter Name :  ");
 			name = sc.nextLine();
 		}
 
 		System.out.println("Enter Password : ");
-		String password = sc.nextLine();
+		String password = sc.next();
 		while(!validatePassword(password))
 		{
-			System.out.println("Enter Password :  ");
-			password = sc.nextLine();
+			password = sc.next();
 		}
 		System.out.println("Enter Email :  ");
-		String email = sc.nextLine();
+		String email = sc.next();
 		while(!validateEmail(email))
 		{
-			System.out.println("Enter Email :  ");
-			email = sc.nextLine();
+			email = sc.next();
 		}
 
 		System.out.println("Avaliable Department Ids : From 1 to 10 ");
 		String temp = null;
 		int deptid = 0;
 		System.out.println("Enter Department Id");
-		temp = sc.nextLine();
+		temp = sc.next();
 
 		while(!validateDeptId(temp))
 		{
-			System.out.println("Enter Department Id");
-			temp = sc.nextLine();
+			temp = sc.next();
 		}
 		deptid = Integer.parseInt(temp);
 
@@ -72,19 +68,33 @@ public class menu extends Validation
 		}
 		int id = Integer.parseInt(temp);
 
-		System.out.println("Enter New Password : ");
+		System.out.println("Enter Password : ");
 		String password = sc.next();
-
+		while(!validatePassword(password))
+		{
+			password = sc.next();
+		}
 		System.out.println("Enter New Email :  ");
 		String email = sc.next();
 		while(!validateEmail(email))
 		{
-			System.out.println("Enter Email :  ");
-			email = sc.nextLine();
+			email = sc.next();
 		}
-		System.out.println("Enter New Department Id");
-		int deptid = sc.nextInt();
+
+		System.out.println("Avaliable Department Ids : From 1 to 10 ");
+		String temp1 = null;
+		int deptid = 0;
+		System.out.println("Enter Department Id");
+		temp1 = sc.next();
+
+		while(!validateDeptId(temp1))
+		{
+			temp1 = sc.next();
+		}
+		deptid = Integer.parseInt(temp1);
+
 		Student st = new Student(id, password, email, deptid);
+
 		return st;
 	}
 
