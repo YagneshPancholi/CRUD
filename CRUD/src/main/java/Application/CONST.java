@@ -64,14 +64,15 @@ public class CONST
 	{
 		ResultSet rs = selectPstmt.executeQuery();
 		System.out.print("ID\t");
-		System.out.print("Name\t");
-		System.out.print("Email\t\t");
+		System.out.print("Name\t\t    ");
+		System.out.print("Email\t\t     ");
 		System.out.print("DepartmentID\n");
+
 		while(rs.next())
 		{
 			System.out.printf("%-8s", rs.getString("id"));
-			System.out.printf("%-8s", rs.getString("name"));
-			System.out.printf("%-17s", rs.getString("email"));
+			System.out.printf("%-20s", rs.getString("name"));
+			System.out.printf("%-25s", rs.getString("email"));
 			System.out.printf("%s", rs.getString("departmentid"));
 			System.out.println();
 		}

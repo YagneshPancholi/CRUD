@@ -1,6 +1,7 @@
 package Application;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -26,31 +27,58 @@ public class App extends menu
 				input = Integer.parseInt(tempInput);
 				if(input == 1)
 				{
-					Student st = method1();
+					Student st = methodAdd();
 					CONST.insertMethod(st);
 
 				}
 				else if(input == 2)
 				{
+					ResultSet rs = CONST.selectPstmt.executeQuery();
 
-					Student st = method2();
-					CONST.updateMethod(st);
+					if(rs.next())
+					{
+						CONST.selectMethod();
+					}
+					else
+					{
+						System.out.println("Databse is Empty");
+
+					}
 
 				}
 				else if(input == 3)
 				{
-					CONST.selectMethod();
+					ResultSet rs = CONST.selectPstmt.executeQuery();
+
+					if(rs.next())
+					{
+						Student st = methodUpdate();
+						CONST.updateMethod(st);
+					}
+					else
+					{
+						System.out.println("Databse is Empty");
+
+					}
 				}
 				else if(input == 4)
 				{
-					System.out.println("Enter student id to delete : ");
-					String temp = sc.next();
-					while(!validateStudentId(temp))
+					ResultSet rs = CONST.selectPstmt.executeQuery();
+					if(rs.next())
 					{
-						temp = sc.next();
+						System.out.println("Enter student id to delete : ");
+						String temp = sc.next();
+						while(!validateStudentId(temp))
+						{
+							temp = sc.next();
+						}
+						int id = Integer.parseInt(temp);
+						CONST.deleteMethod(id);
 					}
-					int id = Integer.parseInt(temp);
-					CONST.deleteMethod(id);
+					else
+					{
+						System.out.println("Databse is Empty");
+					}
 
 				}
 				else if(input == 5)

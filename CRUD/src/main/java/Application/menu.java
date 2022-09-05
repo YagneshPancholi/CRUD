@@ -5,28 +5,26 @@ import java.util.Scanner;
 
 public class menu extends Validation
 {
+	static Scanner sc = new Scanner(System.in);
 
 	public static void printMenu()
 	{
-
 		System.out.println("\t\tChoose Option");
 		System.out.println("\t\t1 : Add Student ");
-		System.out.println("\t\t2 : Update Student");
-		System.out.println("\t\t3 : Display Student");
+		System.out.println("\t\t2 : Display Student");
+		System.out.println("\t\t3 : Update Student");
 		System.out.println("\t\t4 : Delete Student");
 		System.out.println("\t\t5 :  Exit");
 	}
 
-	public static Student method1()
+	public static Student methodAdd()
 	{
-		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Name :  ");
-		String name = sc.next();
+		String name = sc.nextLine();
 		while(!validateName(name))
 		{
-			name = sc.nextLine();
+			name = sc.next();
 		}
-
 		System.out.println("Enter Password : ");
 		String password = sc.next();
 		while(!validatePassword(password))
@@ -39,7 +37,6 @@ public class menu extends Validation
 		{
 			email = sc.next();
 		}
-
 		System.out.println("Avaliable Department Ids : From 1 to 10 ");
 		String temp = null;
 		int deptid = 0;
@@ -51,15 +48,14 @@ public class menu extends Validation
 			temp = sc.next();
 		}
 		deptid = Integer.parseInt(temp);
-
 		Student st = new Student(name, password, email, deptid);
 		//sc.close();
 		return st;
 	}
 
-	public static Student method2() throws SQLException
+	public static Student methodUpdate() throws SQLException
 	{
-		Scanner sc = new Scanner(System.in);
+		//		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Student ID To which You want to  Update\n");
 		String temp = sc.next();
 		while(!validateStudentId(temp))
@@ -67,7 +63,6 @@ public class menu extends Validation
 			temp = sc.next();
 		}
 		int id = Integer.parseInt(temp);
-
 		System.out.println("Enter Password : ");
 		String password = sc.next();
 		while(!validatePassword(password))
@@ -80,21 +75,17 @@ public class menu extends Validation
 		{
 			email = sc.next();
 		}
-
 		System.out.println("Avaliable Department Ids : From 1 to 10 ");
 		String temp1 = null;
 		int deptid = 0;
 		System.out.println("Enter Department Id");
 		temp1 = sc.next();
-
 		while(!validateDeptId(temp1))
 		{
 			temp1 = sc.next();
 		}
 		deptid = Integer.parseInt(temp1);
-
 		Student st = new Student(id, password, email, deptid);
-
 		return st;
 	}
 
