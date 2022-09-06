@@ -7,15 +7,17 @@ import java.sql.SQLException;
 
 public class CONST
 {
-	public static String			INSERTQUERY	= "insert into student(name,password,email,departmentid) values(?,?,?,?)";
-	public static String			DELETEQUERY	= "delete from student where id =?";
-	public static String			SELECTQUERY	= "select id,name,email,departmentid from student;";
-	public static String			UPDATEQUERY	= "update student set password=?,email=?,departmentid=? where id=?";
+	public static String			INSERTQUERY				= "insert into Student(name,password,email,departmentid) values(?,?,?,?)";
+	public static String			DELETEQUERY				= "delete from Student where id =?";
+	public static String			SELECTQUERY				= "select id,name,email,departmentid from Student;";
+	public static String			UPDATEFROMADMINQUERY	= "update Student set departmentid=? where id=?";
+	public static String			SELECTADMINQUERY		= "select Adminid,Password from Admin;";
 
-	public static PreparedStatement	insertPstmt	= null;
-	public static PreparedStatement	deletePstmt	= null;
-	public static PreparedStatement	selectPstmt	= null;
-	public static PreparedStatement	updatePstmt	= null;
+	public static PreparedStatement	insertPstmt				= null;
+	public static PreparedStatement	deletePstmt				= null;
+	public static PreparedStatement	selectPstmt				= null;
+	public static PreparedStatement	updatePstmt				= null;
+	public static PreparedStatement	selectAdminPstmt		= null;
 
 	public CONST(Connection con) throws SQLException
 	{
@@ -23,7 +25,8 @@ public class CONST
 		insertPstmt = con.prepareStatement(INSERTQUERY);
 		deletePstmt = con.prepareStatement(DELETEQUERY);
 		selectPstmt = con.prepareStatement(SELECTQUERY);
-		updatePstmt = con.prepareStatement(UPDATEQUERY);
+		updatePstmt = con.prepareStatement(UPDATEFROMADMINQUERY);
+		selectAdminPstmt = con.prepareStatement(SELECTADMINQUERY);
 	}
 
 	public static void insertMethod(Student st) throws SQLException
@@ -78,15 +81,28 @@ public class CONST
 		}
 	}
 
+	public static ResultSet selectAdminMethod() throws SQLException
+	{
+		return selectAdminPstmt.executeQuery();
+	}
+
 	public static void updateMethod(Student st)
 	{
 		try
 		{
-			updatePstmt.setString(1, st.getPassword());
-			updatePstmt.setString(2, st.getEmail());
-			updatePstmt.setInt(3, st.getDeptid());
-			updatePstmt.setInt(4, st.getId());
-			updatePstmt.executeUpdate();
+			//			updatePstmt.setString(1, st.getPassword());
+			//			updatePstmt.setString(2, st.getEmail());
+			updatePstmt.setInt(1, st.getDeptid());
+			updatePstmt.setInt(2, st.getId());
+			int row = updatePstmt.executeUpdate();
+			if(row > 0)
+			{
+				System.out.println("-----Successfully Updated----- ");
+			}
+			else
+			{
+				System.out.println("-----Fail to Update-----");
+			}
 		}
 		catch(Exception e)
 		{

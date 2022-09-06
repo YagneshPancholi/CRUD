@@ -10,7 +10,7 @@ public class Validation
 	public static boolean validateName(String name)
 	{
 		boolean ans = false;
-		if(name.matches("[A-Za-z ]+"))
+		if(name.trim().matches("[A-Za-z ]+"))
 		{
 			ans = true;
 		}
@@ -25,7 +25,7 @@ public class Validation
 	public static boolean validateEmail(String email)
 	{
 		boolean ans = false;
-		if(email.matches("[a-z0-9._]+@[a-z]+\\.[a-z]{2,3}(\\.[a-z]{2,3})?"))
+		if(email.trim().matches("[a-z0-9._]+@[a-z]+\\.[a-z]{2,3}(\\.[a-z]{2,3})?"))
 		{
 			ans = true;
 		}
@@ -42,9 +42,9 @@ public class Validation
 
 	{
 		boolean ans = false;
-		if(temp.matches("[0-9]+"))
+		if(temp.trim().matches("[0-9]+"))
 		{
-			int id = Integer.parseInt(temp);
+			int id = Integer.parseInt(temp.trim());
 			if(id >= 1 && id <= 10)
 			{
 				ans = true;
@@ -67,7 +67,7 @@ public class Validation
 	public static boolean validatePassword(String temp)
 	{
 		boolean ans = false;
-		if(temp != null && temp.length() > 4)
+		if(temp.trim() != null && temp.trim().length() > 4)
 		{
 			ans = true;
 		}
@@ -90,9 +90,9 @@ public class Validation
 			while(rs.next())
 			{
 				int avaid = Integer.parseInt(rs.getString("id"));
-				if(temp.matches("[0-9]+"))
+				if(temp.trim().matches("[0-9]+"))
 				{
-					int id = Integer.parseInt(temp);
+					int id = Integer.parseInt(temp.trim());
 					if(avaid == id)
 					{
 						ans = true;
@@ -118,6 +118,35 @@ public class Validation
 		catch(SQLException e)
 		{
 			e.printStackTrace();
+		}
+		return ans;
+	}
+
+	public static boolean validAdmin(String temp1, String temp2) throws SQLException
+	{
+		boolean ans = false;
+		if(temp1.trim().matches("[0-9]+"))
+		{
+			ResultSet rs = CONST.selectAdminMethod();
+			while(rs.next())
+			{
+				if(temp1.trim().equals(rs.getString("Adminid")) && temp2.trim().equals(rs.getString("Password")))
+				{
+					ans = true;
+				}
+			}
+			//rs.next();
+
+			if(!ans)
+			{
+				System.out.println("Wrong Admin Credentials");
+			}
+
+		}
+		else
+		{
+			System.out.println("Wrong Admin Credentials");
+
 		}
 		return ans;
 	}

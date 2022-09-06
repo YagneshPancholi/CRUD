@@ -87,15 +87,15 @@ public class Student
 	{
 		this.deptid = deptid;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString()
-	{
-		return "Student [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", deptid=" + deptid + "]";
-	}
+	//
+	//	/* (non-Javadoc)
+	//	 * @see java.lang.Object#toString()
+	//	 */
+	//	@Override
+	//	public String toString()
+	//	{
+	//		return "Student [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", deptid=" + deptid + "]";
+	//	}
 
 	public Student(String name, String password, String email, int deptid)
 	{
@@ -106,12 +106,10 @@ public class Student
 		this.deptid = deptid;
 	}
 
-	public Student(int id, String password, String email, int deptid)
+	public Student(int id, int deptid)
 	{
 		super();
 		this.id = id;
-		this.password = password;
-		this.email = email;
 		this.deptid = deptid;
 	}
 
