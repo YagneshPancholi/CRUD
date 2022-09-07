@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Validation
 {
+	static Scanner sc = new Scanner(System.in);
 
 	public static boolean validateName(String name)
 	{
@@ -55,7 +56,6 @@ public class Validation
 				System.out.println("Enter DeptId Again : ");
 			}
 		}
-
 		else
 		{
 			System.out.println("Wrong Department id");
@@ -79,14 +79,64 @@ public class Validation
 		return ans;
 	}
 
-	public static boolean validateStudentId(String temp) throws SQLException
+	public static boolean validateSalary(String temp)
+	{
+		boolean ans = false;
+		if(temp.trim().matches("[0-9]+"))
+		{
+			ans = true;
+		}
+		return ans;
+	}
+
+	public static boolean validateTeacherId(String temp)
+	{
+		boolean ans = false;
+		try
+		{
+			ResultSet rs = CONST.showTeacherPstmt.executeQuery();
+			while(rs.next())
+			{
+				int avaid = Integer.parseInt(rs.getString("tid"));
+				if(temp.trim().matches("[0-9]+"))
+				{
+					int id = Integer.parseInt(temp.trim());
+					if(avaid == id)
+					{
+						ans = true;
+					}
+
+				}
+				else
+				{
+					break;
+				}
+				if(ans)
+				{
+					break;
+				}
+			}
+			if(!ans)
+			{
+				System.out.println("ID not avaliable");
+				System.out.println("Enter Correct Id : ");
+			}
+		}
+
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return ans;
+	}
+
+	public static boolean validateStudentId(String temp)
 	{
 		boolean ans = false;
 
-		Scanner sc = new Scanner(System.in);
 		try
 		{
-			ResultSet rs = CONST.selectPstmt.executeQuery();
+			ResultSet rs = CONST.showStudentPstmt.executeQuery();
 			while(rs.next())
 			{
 				int avaid = Integer.parseInt(rs.getString("id"));
@@ -146,6 +196,64 @@ public class Validation
 		else
 		{
 			System.out.println("Wrong Admin Credentials");
+
+		}
+		return ans;
+	}
+
+	public static boolean validStudent(String temp1, String temp2) throws SQLException
+	{
+		boolean ans = false;
+		if(temp1.trim().matches("[0-9]+"))
+		{
+			ResultSet rs = CONST.selectStudentMethod();
+			while(rs.next())
+			{
+				if(temp1.trim().equals(rs.getString("id")) && temp2.trim().equals(rs.getString("Password")))
+				{
+					ans = true;
+				}
+			}
+			//rs.next();
+
+			if(!ans)
+			{
+				System.out.println("Wrong Student Credentials");
+			}
+
+		}
+		else
+		{
+			System.out.println("Wrong Student Credentials");
+
+		}
+		return ans;
+	}
+
+	public static boolean validTeacher(String temp1, String temp2) throws SQLException
+	{
+		boolean ans = false;
+		if(temp1.trim().matches("[0-9]+"))
+		{
+			ResultSet rs = CONST.selectTeacherMethod();
+			while(rs.next())
+			{
+				if(temp1.trim().equals(rs.getString("Tid")) && temp2.trim().equals(rs.getString("Password")))
+				{
+					ans = true;
+				}
+			}
+			//rs.next();
+
+			if(!ans)
+			{
+				System.out.println("Wrong Teacher Credentials");
+			}
+
+		}
+		else
+		{
+			System.out.println("Wrong Teacher Credentials");
 
 		}
 		return ans;

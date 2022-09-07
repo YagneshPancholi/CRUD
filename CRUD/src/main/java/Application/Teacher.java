@@ -2,54 +2,42 @@ package Application;
 
 public class Teacher
 {
-	private int		Tid;
-	private String	UserName;
-	private String	Password;
-	private String	FullName;
-	private String	Branch;
-	private int		Salary;
+	private int		tid;
+	private String	name;
+	private String	password;
+	private String	email;
+	private int		deptid;
 
-	public Teacher(int tid, String userName, String password, String fullName, String branch, int salary)
+	public Teacher(int tid, int deptid, int salary)
 	{
-		super();
-		Tid = tid;
-		UserName = userName;
-		Password = password;
-		FullName = fullName;
-		Branch = branch;
-		Salary = salary;
+		this.setTid(tid);
+		this.deptid = deptid;
+		this.salary = salary;
+	}
+
+	public Teacher(String name, String password, String email, int deptid, int salary)
+	{
+		this.name = name;
+		this.password = password;
+		this.email = email;
+		this.deptid = deptid;
+		this.salary = salary;
 	}
 
 	/**
-	 * @return the tid
+	 * @return the name
 	 */
-	public int getTid()
+	public String getName()
 	{
-		return Tid;
+		return name;
 	}
 
 	/**
-	 * @param tid the tid to set
+	 * @param name the name to set
 	 */
-	public void setTid(int tid)
+	public void setName(String name)
 	{
-		Tid = tid;
-	}
-
-	/**
-	 * @return the userName
-	 */
-	public String getUserName()
-	{
-		return UserName;
-	}
-
-	/**
-	 * @param userName the userName to set
-	 */
-	public void setUserName(String userName)
-	{
-		UserName = userName;
+		this.name = name;
 	}
 
 	/**
@@ -57,7 +45,7 @@ public class Teacher
 	 */
 	public String getPassword()
 	{
-		return Password;
+		return password;
 	}
 
 	/**
@@ -65,39 +53,39 @@ public class Teacher
 	 */
 	public void setPassword(String password)
 	{
-		Password = password;
+		this.password = password;
 	}
 
 	/**
-	 * @return the fullName
+	 * @return the email
 	 */
-	public String getFullName()
+	public String getEmail()
 	{
-		return FullName;
+		return email;
 	}
 
 	/**
-	 * @param fullName the fullName to set
+	 * @param email the email to set
 	 */
-	public void setFullName(String fullName)
+	public void setEmail(String email)
 	{
-		FullName = fullName;
+		this.email = email;
 	}
 
 	/**
-	 * @return the branch
+	 * @return the deptid
 	 */
-	public String getBranch()
+	public int getDeptid()
 	{
-		return Branch;
+		return deptid;
 	}
 
 	/**
-	 * @param branch the branch to set
+	 * @param deptid the deptid to set
 	 */
-	public void setBranch(String branch)
+	public void setDeptid(int deptid)
 	{
-		Branch = branch;
+		this.deptid = deptid;
 	}
 
 	/**
@@ -105,7 +93,7 @@ public class Teacher
 	 */
 	public int getSalary()
 	{
-		return Salary;
+		return salary;
 	}
 
 	/**
@@ -113,7 +101,19 @@ public class Teacher
 	 */
 	public void setSalary(int salary)
 	{
-		Salary = salary;
+		this.salary = salary;
 	}
+
+	public int getTid()
+	{
+		return tid;
+	}
+
+	public void setTid(int tid)
+	{
+		this.tid = tid;
+	}
+
+	private int salary;
 
 }
