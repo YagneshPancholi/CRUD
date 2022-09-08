@@ -8,6 +8,15 @@ public class Teacher
 	private String	email;
 	private int		deptid;
 
+	public Teacher(int tid, String name, String password, String email)
+	{
+		super();
+		this.tid = tid;
+		this.name = name;
+		this.password = password;
+		this.email = email;
+	}
+
 	public Teacher(int tid, int deptid, int salary)
 	{
 		this.setTid(tid);

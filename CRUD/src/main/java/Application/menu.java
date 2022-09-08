@@ -17,16 +17,16 @@ public class menu extends Validation
 	public static void printStudentMenu()
 	{
 		System.out.println("Enter Choice : ");
-		System.out.println("\t\t1 : ");
-		System.out.println("\t\t2 : ");
+		System.out.println("\t\t1 : View Your Information ");
+		System.out.println("\t\t2 : Update Your Information");
 		System.out.println("\t\t3 : Exit");
 	}
 
 	public static void printTeacherMenu()
 	{
 		System.out.println("Enter Choice : ");
-		System.out.println("\t\t1 : ");
-		System.out.println("\t\t2 : ");
+		System.out.println("\t\t1 : View Your Information");
+		System.out.println("\t\t2 : Update Your Information");
 		System.out.println("\t\t3 : Exit");
 	}
 
