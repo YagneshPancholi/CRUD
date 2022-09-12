@@ -86,6 +86,10 @@ public class Validation
 		{
 			ans = true;
 		}
+		else
+		{
+			System.out.println("Enter Integer Only ");
+		}
 		return ans;
 	}
 
