@@ -12,7 +12,7 @@ public class App extends menu
 	{
 		new CONST(conn);
 		System.out.println("--------------------------------------------");
-		System.out.println("\twelcome To Student Management");
+		System.out.println("\tWelcome To Student Management");
 		Scanner sc = new Scanner(System.in);
 		String choiceInput = null;
 		int input1 = 0;
