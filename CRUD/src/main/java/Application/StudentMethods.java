@@ -15,13 +15,22 @@ public class StudentMethods
 		String StudentId = sc.nextLine();
 		System.out.println("Enter Password : ");
 		String StudentPassword = sc.nextLine();
-		while(!Validation.validStudent(StudentId, StudentPassword))
+		int noOfAttemtps = 1;
+		boolean validateStudent = Validation.validStudent(StudentId, StudentPassword);
+		
+		while(!validateStudent && noOfAttemtps < 3)
 		{
 			System.out.println("Enter StudentId Again : ");
 			StudentId = sc.nextLine();
 			System.out.println("Enter Password Again : ");
 			StudentPassword = sc.nextLine();
+			noOfAttemtps++;
+			 validateStudent = Validation.validStudent(StudentId, StudentPassword);
 
+		}
+		if(!validateStudent) {
+			System.out.println("You have tried 3 Times, Plz Try To Remember!!!");
+			return ;
 		}
 		while(true)
 		{

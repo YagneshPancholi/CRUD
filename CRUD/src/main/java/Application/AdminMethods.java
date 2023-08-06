@@ -15,12 +15,20 @@ public class AdminMethods
 		String AdminId = sc.nextLine();
 		System.out.println("Enter Password : ");
 		String AdminPassword = sc.nextLine();
-		while(!Validation.validAdmin(AdminId, AdminPassword))
+		int noOfAttemtps = 1;
+		boolean validateAdmin = Validation.validAdmin(AdminId, AdminPassword);
+		while(!validateAdmin && noOfAttemtps < 3)
 		{
 			System.out.println("Enter AdminId Again : ");
 			AdminId = sc.nextLine();
 			System.out.println("Enter Password Again : ");
 			AdminPassword = sc.nextLine();
+			noOfAttemtps++;
+			validateAdmin = Validation.validAdmin(AdminId, AdminPassword);
+		}
+		if(!validateAdmin) {
+			System.out.println("You have tried 3 Times, Plz Try To Remember!!!");
+			return ;
 		}
 		while(true)
 		{
@@ -190,12 +198,12 @@ public class AdminMethods
 		{
 			name = sc.nextLine();
 		}
-		System.out.println("Enter Password : ");
-		String password = sc.nextLine();
-		while(!Validation.validatePassword(password))
-		{
-			password = sc.nextLine();
-		}
+//		System.out.println("Enter Password : ");
+//		String password = sc.nextLine();
+//		while(!Validation.validatePassword(password))
+//		{
+//			password = sc.nextLine();
+//		}
 		System.out.println("Enter Email :  ");
 		String email = sc.nextLine();
 		while(!Validation.validateEmail(email))
@@ -212,7 +220,7 @@ public class AdminMethods
 			temp = sc.nextLine();
 		}
 		deptid = Integer.parseInt(temp.trim());
-		Student st = new Student(name, password, email, deptid);
+		Student st = new Student(name,"default" , email, deptid);
 		//sc.close();
 		return st;
 	}

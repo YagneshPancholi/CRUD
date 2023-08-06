@@ -12,16 +12,16 @@ public class CONST
 	public static String			SHOWSTUDENTQUERY			= "select id,name,email,departmentid from Student;";
 	public static String			UPDATESTUDENTFROMADMINQUERY	= "update Student set departmentid=? where id=?";
 	public static String			INSERTTEACHERQUERY			= "insert into Teacher(name,password,email,deptid,salary) values(?,?,?,?,?)";
-	public static String			DELETETEACHERQUERY			= "delete from Teacher where tid=?";
-	public static String			SHOWTEACHERQUERY			= "select tid,name,email,deptid,salary from Teacher";
-	public static String			UPDATETEACHERFROMADMINQUERY	= "update Teacher set deptid=?,salary=?  where tid=?";
+	public static String			DELETETEACHERQUERY			= "delete from Teacher where id=?";
+	public static String			SHOWTEACHERQUERY			= "select id,name,email,deptid,salary from Teacher";
+	public static String			UPDATETEACHERFROMADMINQUERY	= "update Teacher set deptid=?,salary=?  where id=?";
 	public static String			VIEWSTUDENT					= "select * from Student where id=?";
 	public static String			SELECTADMINQUERY			= "select Adminid,Password from Admin;";
 	public static String			SELECTSTUDENTQUERY			= "select id,Password from Student;";
-	public static String			SELECTTEACHERQUERY			= "select TId,Password from Teacher;";
+	public static String			SELECTTEACHERQUERY			= "select Id,Password from Teacher;";
 	public static String			UPDATESTUDENTSELF			= "update Student set name=?,Password=?,email=? where id=?";
-	public static String			VIEWTEACHER					= "select * from Teacher where tid=?";
-	public static String			UPDATETEACHERSELF			= "update Teacher set name=?,password=?,email=? where tid=?";
+	public static String			VIEWTEACHER					= "select * from Teacher where id=?";
+	public static String			UPDATETEACHERSELF			= "update Teacher set name=?,password=?,email=? where id=?";
 
 	public static PreparedStatement	insertStudentPstmt			= null;
 	public static PreparedStatement	deleteStudentPstmt			= null;
@@ -188,7 +188,7 @@ public class CONST
 
 		while(rs.next())
 		{
-			System.out.printf("%-8s", rs.getString("tid"));
+			System.out.printf("%-8s", rs.getString("id"));
 			System.out.printf("%-20s", rs.getString("name"));
 			System.out.printf("%-25s", rs.getString("email"));
 			System.out.printf("%-5s", rs.getString("deptid"));
@@ -203,7 +203,7 @@ public class CONST
 		{
 			updateTeacherPstmt.setInt(1, t.getDeptid());
 			updateTeacherPstmt.setInt(2, t.getSalary());
-			updateTeacherPstmt.setInt(3, t.getTid());
+			updateTeacherPstmt.setInt(3, t.getid());
 
 			int row = updateTeacherPstmt.executeUpdate();
 			if(row > 0)
@@ -294,7 +294,7 @@ public class CONST
 		System.out.print("Salary\n");
 
 		rs.next();
-		System.out.printf("%-8s", rs.getString("tid"));
+		System.out.printf("%-8s", rs.getString("id"));
 		System.out.printf("%-16s", rs.getString("name"));
 		System.out.printf("%-20s", rs.getString("password"));
 		System.out.printf("%-17s", rs.getString("email"));
@@ -310,7 +310,7 @@ public class CONST
 			updateTeacherSelfPstmt.setString(1, t.getName());
 			updateTeacherSelfPstmt.setString(2, t.getPassword());
 			updateTeacherSelfPstmt.setString(3, t.getEmail());
-			updateTeacherSelfPstmt.setInt(4, t.getTid());
+			updateTeacherSelfPstmt.setInt(4, t.getid());
 			int row = updateTeacherSelfPstmt.executeUpdate();
 			if(row > 0)
 			{

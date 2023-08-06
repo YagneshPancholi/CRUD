@@ -101,7 +101,7 @@ public class Validation
 			ResultSet rs = CONST.showTeacherPstmt.executeQuery();
 			while(rs.next())
 			{
-				int avaid = Integer.parseInt(rs.getString("tid"));
+				int avaid = Integer.parseInt(rs.getString("id"));
 				if(temp.trim().matches("[0-9]+"))
 				{
 					int id = Integer.parseInt(temp.trim());
@@ -242,7 +242,7 @@ public class Validation
 			ResultSet rs = CONST.selectTeacherMethod();
 			while(rs.next())
 			{
-				if(temp1.trim().equals(rs.getString("Tid")) && temp2.trim().equals(rs.getString("Password")))
+				if(temp1.trim().equals(rs.getString("id")) && temp2.trim().equals(rs.getString("password")))
 				{
 					ans = true;
 				}

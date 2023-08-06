@@ -13,9 +13,9 @@ public class ConnectionMaker
 		{
 			try
 			{
-				String jdbcURL = "jdbc:mysql://localhost:3306/SampleDB";
+				String jdbcURL = "jdbc:mysql://localhost:3306/CRUD";
 				String userName = "root";
-				String password = "P@ssw0rd@123";
+				String password = "1718";
 				conn = DriverManager.getConnection(jdbcURL, userName, password);
 
 			}

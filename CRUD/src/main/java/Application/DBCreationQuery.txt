@@ -1,0 +1,33 @@
+CREATE TABLE Student (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255),
+    password VARCHAR(255),
+    email VARCHAR(255),
+    departmentid INT,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Teacher (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255),
+    password VARCHAR(255),
+    email VARCHAR(255),
+    deptid INT,
+    salary INT,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Admin (
+    id INT NOT NULL AUTO_INCREMENT,
+    Adminid INT,
+    Password VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+Sample Data For Application
+
+
+INSERT INTO Admin (Adminid, Password) VALUES (51, "Admin51");
+INSERT INTO Admin (Adminid, Password) VALUES (52, "Admin52");
+
+

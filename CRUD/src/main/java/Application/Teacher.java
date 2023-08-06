@@ -2,7 +2,7 @@ package Application;
 
 public class Teacher
 {
-	private int		tid;
+	private int		id;
 	private String	name;
 	private String	password;
 	private String	email;
@@ -11,7 +11,7 @@ public class Teacher
 	public Teacher(int tid, String name, String password, String email)
 	{
 		super();
-		this.tid = tid;
+		this.id = tid;
 		this.name = name;
 		this.password = password;
 		this.email = email;
@@ -19,7 +19,7 @@ public class Teacher
 
 	public Teacher(int tid, int deptid, int salary)
 	{
-		this.setTid(tid);
+		this.setid(tid);
 		this.deptid = deptid;
 		this.salary = salary;
 	}
@@ -113,14 +113,14 @@ public class Teacher
 		this.salary = salary;
 	}
 
-	public int getTid()
+	public int getid()
 	{
-		return tid;
+		return id;
 	}
 
-	public void setTid(int tid)
+	public void setid(int id)
 	{
-		this.tid = tid;
+		this.id = id;
 	}
 
 	private int salary;

@@ -15,12 +15,22 @@ public class TeacherMethods
 		String TeacherId = sc.nextLine();
 		System.out.println("Enter Password : ");
 		String TeacherPassword = sc.nextLine();
-		while(!Validation.validTeacher(TeacherId, TeacherPassword))
+		int noOfAttemtps = 1;
+		boolean validateTeacher = Validation.validTeacher(TeacherId, TeacherPassword);
+		
+		while(!validateTeacher && noOfAttemtps < 3)
 		{
 			System.out.println("Enter TeacherId Again : ");
 			TeacherId = sc.nextLine();
 			System.out.println("Enter Password Again : ");
 			TeacherPassword = sc.nextLine();
+			noOfAttemtps++;
+			validateTeacher = Validation.validTeacher(TeacherId, TeacherPassword);
+			
+		}
+		if(!validateTeacher) {
+			System.out.println("You have tried 3 Times, Plz Try To Remember!!!");
+			return ;
 		}
 		while(true)
 		{
